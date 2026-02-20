@@ -29,5 +29,5 @@ jobs:
         run: |
           az acr build \
             --registry ${{ secrets.ACR_NAME }} \
-            --image bankingapp:v2 \
+            --image bankingapp:v4 \
             .

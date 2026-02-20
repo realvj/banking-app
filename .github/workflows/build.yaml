@@ -18,10 +18,17 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Build Image in ACR
+      - name: Login to ACR
         run: |
-          az acr build \
-            --registry ${{ secrets.ACR_NAME }} \
-            --image bankingapp:latest \
+          az acr login --name ${{ secrets.ACR_NAME }}
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and Push (AMD64)
+        run: |
+          docker buildx build \
             --platform linux/amd64 \
+            -t ${{ secrets.ACR_NAME }}.azurecr.io/bankingapp:latest \
+            --push \
             .

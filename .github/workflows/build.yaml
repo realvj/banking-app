@@ -25,10 +25,9 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Build and Push (AMD64)
+      - name: Build Image in ACR (Clean)
         run: |
-          docker buildx build \
-            --platform linux/amd64 \
-            -t ${{ secrets.ACR_NAME }}.azurecr.io/bankingapp:latest \
-            --push \
+          az acr build \
+            --registry ${{ secrets.ACR_NAME }} \
+            --image bankingapp:v2 \
             .

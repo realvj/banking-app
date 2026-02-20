@@ -1,11 +1,12 @@
 {
-  "name": "banking-internal-app",
+  "name": "hello-aks-app",
   "version": "1.0.0",
-  "description": "Internal Banking User App",
+  "description": "Simple AKS test app",
   "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
   "dependencies": {
-    "express": "^4.18.2",
-    "body-parser": "^1.20.2",
-    "mssql": "^10.0.1"
+    "express": "^4.18.2"
   }
 }
